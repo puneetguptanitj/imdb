@@ -3,7 +3,7 @@ import java.util.List;
 import java.util.Map.Entry;
 
 public class Db {
-	//easier traversal through list. states.get(0) points to most recent transaction
+	//easier traversal through list. 
 	List<State> states = new LinkedList<State>();
 	{
 		//Simplifies logic base db and all transactions are now States
@@ -20,8 +20,8 @@ public class Db {
 	}
 	public void delete(String key){
 		/*
-		 * important to use our own method as oldValue
-		 * (where ever in transaction list needs to be now nullified);
+		 * important to use our own method as oldValue so that 
+		 * where ever in transaction list needs to be now nullified;
 		 */
 		Integer oldValue = get(key); 
 		states.get(0).getData().put(key, null);
@@ -45,8 +45,8 @@ public class Db {
 	}
 	public void set(String key, Integer value){
 		/*
-		 * important to use our own method as oldValue
-		 * (where ever in transaction list needs to be now nullified);
+		 * important to use our own method as oldValue so that
+		 * where ever in transaction list needs to be now nullified;
 		 */
 		Integer oldValue = get(key); 
 		states.get(0).getData().put(key,value);
@@ -80,17 +80,18 @@ public class Db {
 	public void commit(){
 		if(states.size() ==1){
 			System.out.println( "NO TRANSACTION");
+		}else{
+			for(int i=0; i <states.size() -1 ; i++){
+				/*
+				 * having list initialized with one state helps here
+				 * merging to actual Db is no different than merging two transactions
+				 */
+				merge(states.get(i), states.get(i+1));
+			}
+			State finalState  = states.get(states.size() -1);
+			states = new LinkedList<State>();
+			states.add(finalState);
 		}
-		for(int i=0; i <states.size() -1 ; i++){
-			/*
-			 * having list initialized with one state helps here
-			 * merging to actuall Db is no different than merging two transactions
-			 */
-			merge(states.get(i), states.get(i+1));
-		}
-		State finalState  = states.get(states.size() -1);
-		states = new LinkedList<State>();
-		states.add(finalState);
 	}
 	public void end(){
 		System.exit(0);
@@ -101,7 +102,8 @@ public class Db {
 	public void rollback(){
 		if(states.size() ==1){
 			System.out.println( "NO TRANSACTION");
+		}else{
+			states.remove(0);
 		}
-		states.remove(0);
 	}
 }
