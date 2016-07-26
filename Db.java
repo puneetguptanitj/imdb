@@ -11,8 +11,8 @@ public class Db {
 	}
 	public Integer  get(String key){
 		for(int i =0 ; i < states.size() ; i++){
-			if(states.get(i).getSpace().containsKey(key)){
-				Integer value = states.get(i).getSpace().get(key);
+			if(states.get(i).getData().containsKey(key)){
+				Integer value = states.get(i).getData().get(key);
 				return value;
 			};
 		}
@@ -24,7 +24,7 @@ public class Db {
 		 * (where ever in transaction list needs to be now nullified);
 		 */
 		Integer oldValue = get(key); 
-		states.get(0).getSpace().put(key, null);
+		states.get(0).getData().put(key, null);
 		decreaseCount(oldValue);
 	}
 	private void increaseCount(Integer value){
@@ -49,7 +49,7 @@ public class Db {
 		 * (where ever in transaction list needs to be now nullified);
 		 */
 		Integer oldValue = get(key); 
-		states.get(0).getSpace().put(key,value);
+		states.get(0).getData().put(key,value);
 		if(!value.equals(oldValue)){
 			increaseCount(value);
 			decreaseCount(oldValue);
@@ -66,8 +66,8 @@ public class Db {
 	}
 	//transaction a occurs after b, b's values would be overwritten
 	private void merge (State a, State b){
-		for(Entry<String, Integer> entry : a.getSpace().entrySet()){
-			b.getSpace().put(entry.getKey(), entry.getValue());
+		for(Entry<String, Integer> entry : a.getData().entrySet()){
+			b.getData().put(entry.getKey(), entry.getValue());
 		}
 		for(Entry<Integer,Integer> entry: a.getRevIndex().entrySet()){
 			Integer count = b.getRevIndex().get(entry.getKey());

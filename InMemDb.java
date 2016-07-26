@@ -3,6 +3,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
+
 public class InMemDb {
 
 	static Db db= new Db();
@@ -11,7 +12,7 @@ public class InMemDb {
 		Scanner reader                 = new Scanner(System.in);
 		System.out.print("imdb> ");
 		Command command                = parse(reader.nextLine());
-		while(!command.type.equals(CommandType.END)){
+		while(!command.type.equals(Command.Type.END)){
 			processCmd(command);
 			System.out.print("imdb> ");
 			command = parse(reader.nextLine());
@@ -22,7 +23,7 @@ public class InMemDb {
 	private static Command parse(String commandStr){
 		List<String> tokens = Arrays.asList(commandStr.trim().split(" "));
 		Command command     = new Command();
-		command.type        = CommandType.valueOf(tokens.get(0));
+		command.type        = Command.Type.valueOf(tokens.get(0));
 		command.tokens      = tokens;
 		return command;
 	}

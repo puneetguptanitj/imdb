@@ -1,9 +1,10 @@
 import java.util.List;
 
-
-
 public class Command{
-	CommandType  type;
+	public enum Type{
+		GET, SET, DELETE, END, COUNT, BEGIN, ROLLBACK, COMMIT
+	}
+	Type  type;
 	List<String> tokens;
 }
 

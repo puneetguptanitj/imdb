@@ -2,13 +2,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class State {
-	private Map<String, Integer> space = new HashMap<>();
+	private Map<String, Integer> data = new HashMap<>();
 	private Map<Integer, Integer> revIndex = new HashMap<>();
-	public Map<String, Integer> getSpace() {
-		return space;
+	public Map<String, Integer> getData() {
+		return data;
 	}
-	public void setSpace(Map<String, Integer> space) {
-		this.space = space;
+	public void setData(Map<String, Integer> data) {
+		this.data = data;
 	}
 	public Map<Integer, Integer> getRevIndex() {
 		return revIndex;
@@ -18,7 +18,7 @@ public class State {
 	}
 	@Override
 	public String toString(){
-		return "[\n\t"+space.toString() + "\n\t" + revIndex.toString() +"\n]";
+		return "[\n\t"+data.toString() + "\n\t" + revIndex.toString() +"\n]";
 	}
 	
 }
