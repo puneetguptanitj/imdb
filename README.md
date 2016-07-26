@@ -24,5 +24,4 @@ java -jar imdb.jar
 ```
 docker run -it imdb
 ```
-### Container from dockerhub
 
