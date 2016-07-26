@@ -1,4 +1,3 @@
-# Simple in memory database
 ## To run directly  
 ```
 docker run -it puneetguptanitj/imdb
