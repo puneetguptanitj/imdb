@@ -1,8 +1,11 @@
 # Simple in memory database
-## Prerequisite 
+## To run directly  
 ```
-javac
+docker run -it puneetguptanitj/imdb
 ```
+## Building jar/image locally
+Pre-requisite javac
+
 ## Building
 ### jar
 ```
@@ -22,6 +25,4 @@ java -jar imdb.jar
 docker run -it imdb
 ```
 ### Container from dockerhub
-```
-docker run -it puneetguptanitj/imdb
-```
+
