@@ -4,19 +4,24 @@
 javac
 ```
 ## Building
-
+### jar
 ```
 make build
 ```
-## Docker
+### docker image
 ```
 make docker
 ```
-## Running as jar
+## Running
+### jar
 ```
 java -jar imdb.jar
 ```
-## Running as container
+### Container
 ```
-docker run imdb
+docker run -it imdb
+```
+### Container from dockerhub
+```
+docker run -it puneetguptanitj/imdb
 ```
