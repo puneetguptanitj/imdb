@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Scanner;
 
 
-public class InMemDb {
+public class Runner {
 
 	static Db db= new Db();
 
